@@ -113,6 +113,8 @@ When definitions grow past roughly 10k tokens, ten-plus tools, or multiple MCP s
 - [ ] Input example added if usage is non-obvious
 - [ ] At least one realistic multi-step eval task; transcripts reviewed
 
+For building the MCP server that exposes these tools (primitives, transports, authorization, MCP-specific security, testing, distribution) see `mcp-server-development`.
+
 For platform-specific mechanics (tool definition fields, result ordering rules, parallel calls, strict mode, deferred loading, programmatic calling) see `references/claude-tool-use-mechanics.md`.
 
 ## Sources

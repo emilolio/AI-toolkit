@@ -84,6 +84,9 @@ Tool definitions deserve as much attention as the main prompt. Teams that optimi
 - [ ] Context plan: what is static, what is retrieved just in time, how long tasks are managed (see `context-engineering`)
 - [ ] State persistence and session handoff designed (see `agent-harness`)
 - [ ] Trust boundaries and permissions defined (see `agent-security`)
+- [ ] Knowledge access chosen: in-prompt, agentic search or indexed RAG (see `rag-and-retrieval`)
+- [ ] Prompts written and versioned as code (see `prompt-engineering`)
+- [ ] Model, effort, budgets, retries, fallbacks and tracing planned (see `llm-production-ops`)
 - [ ] 20–50 real eval tasks exist before building (see `agent-evals`)
 
 ## Sources

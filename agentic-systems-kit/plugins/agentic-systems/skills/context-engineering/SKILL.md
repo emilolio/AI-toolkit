@@ -39,7 +39,9 @@ Order static content first (tools → system prompt → reference docs → conve
 - Avoid pressure language ("CRITICAL", "you MUST always"); it causes over-triggering and strong models over-react to it.
 - Avoid forcing sequential execution ("pause between steps"); it suppresses parallel tool use.
 
-**Examples.** A few diverse, canonical examples wrapped in consistent tags beat an exhaustive list of edge cases. With extended thinking, present each as problem → method → answer.
+For the craft of writing the prompt text itself (examples, output format, structured outputs, reasoning modes, agentic prompt blocks, debugging, model migration) see `prompt-engineering`.
+
+**Examples.** A few diverse, canonical examples wrapped in consistent tags beat an exhaustive list of edge cases. With extended thinking, an example may show problem → method → answer to convey approach, but do not ask the model to write out its reasoning in the response (see `prompt-engineering` §5).
 
 **Long documents.** Put documents at the top and the question/instructions at the end (measurably better on long inputs); ask the model to extract relevant quotes before answering.
 
@@ -59,6 +61,7 @@ Skills are the general mechanism for **progressive disclosure** of knowledge. Ke
 - Let the agent explore incrementally; metadata (file names, folder hierarchy, sizes, timestamps) is a relevance signal. `tests/test_utils.py` and `src/core/test_utils.py` mean different things.
 - Use selective reads (head, tail, grep, targeted queries) to inspect large data without ingesting it.
 - Agentic search over a structured store first; semantic/vector search when you need speed or query variety, accepting lower accuracy and transparency.
+- For indexed retrieval over a large corpus (chunking, embeddings, hybrid search, reranking, citations, retrieval evals) see `rag-and-retrieval`.
 - Hybrid: pre-load stable, high-value material (a project's CLAUDE.md), retrieve the rest at runtime. Hybrids suit slower-changing domains.
 - Unguided exploration burns context on dead ends; give the agent a map (what exists, where, naming conventions) and heuristics for picking tools.
 
@@ -82,7 +85,7 @@ Pick by task shape; combine when needed.
 
 - Put a cache breakpoint on the last block that is identical across requests. Never on a timestamp, request ID or the newest user turn.
 - Split breakpoints by change frequency: tools, then system prompt, then reference material, then conversation.
-- Keep tool definitions stable: changing them invalidates the whole cache. Changing tool choice or adding images invalidates only the messages level; the tools and system levels survive.
+- Keep tool definitions stable: changing them invalidates the whole cache. Switching model, effort level or speed mode mid-conversation also forfeits the cache; weigh that before routing turns of one conversation to different settings. Changing tool choice or adding images invalidates only the messages level; the tools and system levels survive.
 - Deterministic serialisation (stable key order) for anything replayed.
 - Longer TTLs for side agents or workflows that pause more than a few minutes.
 - Fleets of agents share cache entries when per-machine dynamic content is kept out of the static prefix.

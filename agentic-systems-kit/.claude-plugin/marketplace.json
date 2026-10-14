@@ -1,11 +1,13 @@
 {
   "name": "my-claude-kit",
-  "owner": { "name": "Emil Holm" },
+  "owner": {
+    "name": "Emil Holm"
+  },
   "plugins": [
     {
       "name": "agentic-systems",
       "source": "./plugins/agentic-systems",
-      "description": "Guidance for designing agentic systems: architecture, tools, context, harnesses, multi-agent, evals, security."
+      "description": "Guidance for designing agentic systems and LLM platforms: architecture, tools, MCP servers, prompts, context, retrieval/RAG, harnesses, multi-agent, evals, security, production ops."
     }
   ]
 }

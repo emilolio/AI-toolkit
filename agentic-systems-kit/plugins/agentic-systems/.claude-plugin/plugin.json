@@ -1,6 +1,8 @@
 {
   "name": "agentic-systems",
-  "version": "0.1.0",
-  "description": "Guidance for designing agentic systems: architecture, tools, context, harnesses, multi-agent, evals, security.",
-  "author": { "name": "Emil Holm" }
+  "version": "0.2.0",
+  "description": "Guidance for designing agentic systems and LLM platforms: architecture, tools, MCP servers, prompts, context, retrieval/RAG, harnesses, multi-agent, evals, security, production ops.",
+  "author": {
+    "name": "Emil Holm"
+  }
 }

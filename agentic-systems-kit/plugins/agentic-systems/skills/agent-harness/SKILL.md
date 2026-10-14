@@ -70,7 +70,7 @@ Mark an item done only after the end-to-end check passes. Known weak spots: nati
 ## 9. Production reliability
 
 - **Resume, don't restart.** Errors are expensive in long runs; resume from the failure point with the state the agent had.
-- **Tell the model when a tool fails** so it can adapt (alternate tool, narrower query), and add deterministic retries for transient errors.
+- **Tell the model when a tool fails** so it can adapt (alternate tool, narrower query), and add deterministic retries for transient errors. Retry policy, idempotency keys, fallbacks, budgets and rollout details are in `llm-production-ops`.
 - **Prefer code for control flow.** Loops, polling, retries, filtering and transformation as scripts or programmatic tool calls, not chains of model round-trips.
 - **Tracing.** Record every decision, tool call, result size and token count so you can diagnose why an agent failed without reading private content you should not store.
 - **Deployment.** Agents are long-lived and stateful; roll out with gradual traffic shifting so in-flight runs are not disrupted; keep old and new versions running side by side during the shift.
@@ -92,7 +92,7 @@ Mark an item done only after the end-to-end check passes. Known weak spots: nati
 - [ ] Verification is layered and end-to-end before marking done
 - [ ] Stopping conditions, human checkpoints, periodic checkpoints
 - [ ] Resume-from-failure, tool-failure signalling, deterministic retries
-- [ ] Tracing of decisions, tokens and tool calls; anomaly alerts
+- [ ] Tracing of decisions, tokens and tool calls; anomaly alerts (span names, budgets, retries and rollout in `llm-production-ops`)
 - [ ] Clean, isolated environment per run
 
 See `references/session-prompts.md` for prompt templates for initialiser and worker sessions.

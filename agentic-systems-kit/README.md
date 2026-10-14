@@ -1,6 +1,6 @@
 # Agentic Systems Design Kit
 
-Reusable, domain-agnostic guidance for building agentic systems and harnesses, packaged so that Claude Code (or the Claude Agent SDK) has it available when it matters. Distilled from Anthropic's engineering posts and developer docs on building agents, tool design, context engineering, long-running harnesses, multi-agent orchestration, evals, agent skills, sandboxing, advanced tool use and prompt-injection defence.
+Reusable, domain-agnostic guidance for building agentic systems and harnesses, packaged so that Claude Code (or the Claude Agent SDK) has it available when it matters. Distilled from Anthropic's engineering posts and developer docs, OpenAI's developer guides and the MCP specification: building agents, tool design, MCP servers, prompt engineering, context engineering, retrieval/RAG, long-running harnesses, multi-agent orchestration, evals, agent skills, sandboxing, prompt-injection defence and running LLM features in production.
 
 This repo is a ready-made **Claude Code plugin marketplace**: push it to GitHub as-is and install from it. The kit itself is the `agentic-systems` plugin under `plugins/`; add further plugins beside it as your collection grows (`/agentic-systems:init-marketplace` scaffolds them). The plugin has three layers, chosen by how often the guidance is needed:
 
@@ -8,7 +8,7 @@ This repo is a ready-made **Claude Code plugin marketplace**: push it to GitHub 
 |---|---|---|---|
 | CLAUDE.md snippet | every turn | ~10 lines: three core principles and pointers to the skills and rules | appended to your project `CLAUDE.md` by `/agentic-systems:setup-project` |
 | rules | every turn, or only when matching files are touched if you add `paths:` | one short conventions file per area | `.claude/rules/agent-*.md`, copied by `/agentic-systems:setup-project` |
-| skills | on demand | 7 knowledge skills + 3 commands (setup, review, marketplace), each with deeper `references/` | stay in the plugin; available in every project where it is enabled |
+| skills | on demand | 11 knowledge skills + 3 commands (setup, review, marketplace), each with deeper `references/` | stay in the plugin; available in every project where it is enabled |
 
 The snippet is the pointer; the rules are the conventions; the skills are the reasoning. Only a skill's name and description sit in context until it is invoked. Keep the always-on layers short, and path-scope the rules in larger repos so they load only when the agent touches the relevant code.
 
@@ -34,7 +34,7 @@ In Claude Code:
 /plugin install agentic-systems@my-claude-kit
 ```
 
-Or from the shell: `claude plugin install agentic-systems@my-claude-kit --scope project` (enables it for everyone on that repo and keeps the skills out of unrelated projects). Use `--scope user` only if most of your projects are agent projects: the `context-engineering` skill triggers on "write a system prompt", which you may not want everywhere.
+Or from the shell: `claude plugin install agentic-systems@my-claude-kit --scope project` (enables it for everyone on that repo and keeps the skills out of unrelated projects). Use `--scope user` only if most of your projects are agent projects: the `context-engineering` and `prompt-engineering` skills trigger on prompt-writing tasks, which you may not want everywhere.
 
 To try it without publishing: `claude --plugin-dir /path/to/agentic-systems-kit/plugins/agentic-systems`.
 
@@ -103,7 +103,10 @@ agentic-systems-kit/                       (a plugin marketplace repo)
             │       ├── CLAUDE.md.snippet
             │       └── rules/
             │           ├── agent-tools.md     tool/MCP conventions
-            │           ├── agent-context.md   prompt and context conventions
+            │           ├── agent-prompts.md   prompt-writing conventions
+            │           ├── agent-context.md   context conventions
+            │           ├── agent-retrieval.md retrieval/RAG conventions
+            │           ├── agent-production.md model, cost, reliability, guardrail, tracing, rollout conventions
             │           ├── agent-harness.md   architecture, state, verification, orchestration conventions
             │           ├── agent-safety.md    security and permission conventions
             │           └── agent-evals.md     evaluation conventions
@@ -114,6 +117,12 @@ agentic-systems-kit/                       (a plugin marketplace repo)
             │   └── references/harness-sdk-shape.md
             ├── agent-tool-design/         tools, descriptions, results, errors, tool search, code execution, eval loop
             │   └── references/claude-tool-use-mechanics.md
+            ├── mcp-server-development/    MCP primitives, transports, OAuth, MCP security, testing, shipping (spec 2026-07-28)
+            │   ├── references/protocol-2026-07-28.md
+            │   └── references/clients-and-tooling.md
+            ├── prompt-engineering/        examples, output shape, structured outputs, reasoning modes, agentic blocks, debugging, migration
+            │   ├── references/prompt-patterns.md
+            │   └── references/model-specific-notes.md
             ├── context-engineering/       system prompts, context budget, retrieval, long-horizon techniques, caching
             │   ├── references/claude-context-mechanics.md
             │   └── references/packaging-knowledge-as-skills.md
@@ -123,6 +132,11 @@ agentic-systems-kit/                       (a plugin marketplace repo)
             │   └── references/lead-agent-prompt.md
             ├── agent-evals/               tasks, graders, pass@k vs pass^k, EDD, layering
             │   └── references/eval-harness-skeleton.md
+            ├── rag-and-retrieval/         strategy ladder, chunking, contextual retrieval, hybrid + rerank, ACLs, citations, retrieval evals
+            │   └── references/retrieval-mechanics.md
+            ├── llm-production-ops/        model/effort choice, latency, cost, reliability, guardrails, tracing, rollout
+            │   ├── references/provider-mechanics.md
+            │   └── references/tracing-and-metrics.md
             └── agent-security/            injection, least privilege, sandboxing, confirmation, red-teaming
                 └── references/injection-defence-patterns.md
 ```
@@ -150,4 +164,10 @@ Each `SKILL.md` keeps the principles provider-agnostic; Claude-API-specific mech
 - Equipping agents for the real world with Agent Skills: https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
 - Beyond permission prompts (sandboxing): https://www.anthropic.com/engineering/claude-code-sandboxing
 - Prompt injection defenses in browser use: https://www.anthropic.com/news/prompt-injection-defenses
+- Introducing Contextual Retrieval: https://www.anthropic.com/news/contextual-retrieval
+- Desktop extensions (MCPB): https://www.anthropic.com/engineering/desktop-extensions
+- Model Context Protocol specification (2026-07-28): https://modelcontextprotocol.io/specification
+- OpenAI, A practical guide to building agents: https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf
+- OpenAI developer guides (prompt engineering, reasoning best practices, structured outputs, retrieval, optimizing LLM accuracy, latency optimization, production best practices, remote MCP): https://developers.openai.com/api/docs
+- OpenTelemetry GenAI semantic conventions: https://github.com/open-telemetry/semantic-conventions-genai
 - Claude developer docs (tool use, prompt engineering, caching, context editing, Agent SDK, Claude Code memory/skills/plugins): https://platform.claude.com/docs and https://code.claude.com/docs

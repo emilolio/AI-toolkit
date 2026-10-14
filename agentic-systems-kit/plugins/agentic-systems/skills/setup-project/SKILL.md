@@ -65,4 +65,4 @@ Report in a few lines: what was added, what was kept, what was scoped, and wheth
 
 ## Updating later
 
-Re-run this skill after pulling a new kit version. Unchanged kit files update in place; files the user edited are kept and listed, so they can merge by hand or use `--force`.
+Re-run this skill after pulling a new kit version. Unchanged kit files update in place; files the user edited are kept and listed, so they can merge by hand or use `--force`. New rule files are added automatically. The `CLAUDE.md` snippet is never re-appended once its header exists, so after a kit update compare the project's `## Agentic system design` section with `assets/CLAUDE.md.snippet` and offer to replace that section (e.g. to pick up newly added skill names).
