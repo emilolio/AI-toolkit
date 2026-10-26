@@ -67,6 +67,8 @@ Skills are the general mechanism for **progressive disclosure** of knowledge. Ke
 
 ## 5. Long-horizon techniques
 
+For a chat product (a user-facing thread with a message store, streaming, resume and memory features) the `chat-harness` skill covers the conversation layer in depth; this section gives the techniques.
+
 Pick by task shape; combine when needed.
 
 | Technique | What | Best for |

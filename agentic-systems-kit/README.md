@@ -105,6 +105,7 @@ agentic-systems-kit/                       (a plugin marketplace repo)
             │           ├── agent-tools.md     tool/MCP conventions
             │           ├── agent-prompts.md   prompt-writing conventions
             │           ├── agent-context.md   context conventions
+            │           ├── agent-conversations.md chat history, compaction, caching, streaming, memory conventions
             │           ├── agent-retrieval.md retrieval/RAG conventions
             │           ├── agent-production.md model, cost, reliability, guardrail, tracing, rollout conventions
             │           ├── agent-harness.md   architecture, state, verification, orchestration conventions
@@ -126,6 +127,9 @@ agentic-systems-kit/                       (a plugin marketplace repo)
             ├── context-engineering/       system prompts, context budget, retrieval, long-horizon techniques, caching
             │   ├── references/claude-context-mechanics.md
             │   └── references/packaging-knowledge-as-skills.md
+            ├── chat-harness/              chat products: message store, append-only replay, clearing/compaction, caching across turns, streaming, stop reasons, memory, forking, tenancy
+            │   ├── references/claude-conversation-mechanics.md
+            │   └── references/memory-design.md
             ├── agent-harness/             sessions, state files, orientation/hand-off, verification, production
             │   └── references/session-prompts.md
             ├── multi-agent-orchestration/ when to use, architecture, delegation, effort scaling, hand-offs
