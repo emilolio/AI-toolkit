@@ -1,6 +1,6 @@
 ---
 name: context-engineering
-description: Managing everything that enters an agent's context window - writing system prompts at the right altitude, structuring instructions and examples, budgeting tokens across tools, prompts and history, prompt caching and cache-stable ordering, just-in-time retrieval and progressive disclosure, and long-horizon techniques (tool-result clearing, compaction, structured note-taking, memory, sub-agents, skills). Use when writing or revising a system prompt, assembling context for a model call, handling long conversations or tasks that exceed one context window, or when an agent loses track, repeats work or ignores instructions.
+description: Managing everything that enters an agent's context window - writing system prompts at the right altitude, structuring instructions and examples, budgeting tokens across tools, prompts and history, prompt caching and cache-stable ordering, just-in-time retrieval and progressive disclosure, and long-horizon techniques (tool-result clearing, compaction, structured note-taking, memory, sub-agents, skills). Use when writing or revising a system prompt, assembling context for a model call, handling long conversations or tasks that exceed one context window, or when an agent loses track, repeats work or ignores instructions. For the message store, replay, compaction and memory of a chat thread see chat-harness.
 ---
 
 # Context engineering
