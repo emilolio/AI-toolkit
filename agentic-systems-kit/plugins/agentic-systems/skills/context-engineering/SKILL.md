@@ -1,6 +1,6 @@
 ---
 name: context-engineering
-description: Managing everything that enters an agent's context window - writing system prompts at the right altitude, structuring instructions and examples, budgeting tokens across tools, prompts and history, prompt caching and cache-stable ordering, just-in-time retrieval and progressive disclosure, and long-horizon techniques (tool-result clearing, compaction, structured note-taking, memory, sub-agents, skills). Use when writing or revising a system prompt, assembling context for a model call, handling long conversations or tasks that exceed one context window, or when an agent loses track, repeats work or ignores instructions.
+description: Managing everything that enters an agent's context window - writing system prompts at the right altitude, structuring instructions and examples, budgeting tokens across tools, prompts and history, prompt caching and cache-stable ordering, just-in-time retrieval and progressive disclosure, and long-horizon techniques (tool-result clearing, compaction, structured note-taking, memory, sub-agents, skills). Use when writing or revising a system prompt, assembling context for a model call, handling long conversations or tasks that exceed one context window, or when an agent loses track, repeats work or ignores instructions. For the message store, replay, compaction and memory of a chat thread see chat-harness.
 ---
 
 # Context engineering
@@ -66,6 +66,8 @@ Skills are the general mechanism for **progressive disclosure** of knowledge. Ke
 - Unguided exploration burns context on dead ends; give the agent a map (what exists, where, naming conventions) and heuristics for picking tools.
 
 ## 5. Long-horizon techniques
+
+For a chat product (a user-facing thread with a message store, streaming, resume and memory features) the `chat-harness` skill covers the conversation layer in depth; this section gives the techniques.
 
 Pick by task shape; combine when needed.
 
